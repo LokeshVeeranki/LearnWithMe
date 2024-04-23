@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhavani</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+
+    </div>
+    <script>
+        const container = document.querySelector(".container");
+        const count = 1000;
+        
+        function createBox() {
+            const box = document.createElement("div");
+            box.className = "box";
+            container.appendChild(box);
+            return box;
+        }
+        
+        function addEventListenerToBox(box) {
+            box.addEventListener('mouseover', (e) => {
+                box.classList.add("active");
+                const xValue = getRandomValue();
+                const yValue = getRandomValue();
+                box.style.setProperty("--x", xValue);
+                box.style.setProperty("--y", yValue);
+                const angleValue = Math.random() * 360;
+                box.style.filter = `hue-rotate(${angleValue}deg)`;
+            });
+        }
+        
+        function getRandomValue() {
+            return `${Math.random() * 2000 - 1000}px`;
+        }
+        
+        for(let i = 0; i < count; i++) {
+            const box = createBox();
+            addEventListenerToBox(box);
+        }
+    </script>
+</body>
+</html>
